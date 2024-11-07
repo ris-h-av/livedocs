@@ -18,6 +18,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import UserTypeSelector from "./UserTypeSelector";
 import Collaborator from "./Collaborator";
+import { updateDocumentAccess } from "@/lib/actions/room.actions";
 
 const ShareModal = ({roomId, collaborators, creatorId, currentUserType}: ShareDocumentDialogProps) => {
     const user = useSelf();
@@ -27,7 +28,15 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType}: ShareDo
     const [userType, setUserType] = useState<UserType>('viewer');
 
     const shareDocumentHandler = async ()=>{
+        setLoading(true);
 
+        await updateDocumentAccess({
+            roomId,
+            email, 
+            userType:userType as UserType, 
+            updatedBy: user.info
+        })
+        setLoading(false);
     }
   return (
     <Dialog>
@@ -52,6 +61,7 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType}: ShareDo
             Select users who can veiw/edit this document
         </DialogDescription>
         </DialogHeader>
+
         <Label htmlFor="email" className="mt-6 text-blue-100 ">Email Address </Label>
         <div className="flex items-center gap-3">
             <div className="flex flex-1 rounded-md bg-dark-400">
