@@ -33,13 +33,13 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType}: ShareDo
         await updateDocumentAccess({
             roomId,
             email, 
-            userType:userType as UserType, 
+            userType: userType as UserType, 
             updatedBy: user.info
-        })
+        });
         setLoading(false);
     }
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
     <DialogTrigger>
         <Button className="gradient-blue flex h-9 gap-1 px-4" disabled={currentUserType!== 'editor'}>
             <Image
@@ -77,7 +77,8 @@ const ShareModal = ({roomId, collaborators, creatorId, currentUserType}: ShareDo
                     setUserType = {setUserType}
                 />
             </div>
-            <Button type="submit" onClick={shareDocumentHandler} className="gradient-blue flex h-full gap-1 px-5" disabled={loading}>
+            <Button type="submit" onClick={shareDocumentHandler} 
+            className="gradient-blue flex h-full gap-1 px-5" disabled={loading}>
                 {loading? 'Sending...' : 'Invite'}
             </Button>
         </div>
