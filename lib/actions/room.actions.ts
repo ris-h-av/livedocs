@@ -13,7 +13,7 @@ CreateDocumentParams) => {
 
     try {
         const metadata = {
-            createrId: userId,
+            creatorId: userId,
             email,
             title: 'Untitled',
         }

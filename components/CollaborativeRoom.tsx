@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { updateDocument } from '@/lib/actions/room.actions';
 import Loader from './Loader';
 import ShareModal from './ShareModal';
+import { metadata } from '@/app/layout';
 
 const CollaborativeRoom = ({roomId,roomMetadata, users, currentUserType}:CollaborativeRoomProps) => {
   
@@ -61,7 +62,7 @@ const CollaborativeRoom = ({roomId,roomMetadata, users, currentUserType}:Collabo
       inputRef.current.focus();
     }
   }, [editing])
-
+  console.log(roomMetadata)
   return (
       <RoomProvider id={roomId}>
         <ClientSideSuspense fallback={<Loader />}>
@@ -81,6 +82,7 @@ const CollaborativeRoom = ({roomId,roomMetadata, users, currentUserType}:Collabo
                   />
                 ) : (
                   <>
+                  
                     <p className='document-title'>{documentTitle}</p>
                   </>
                 )}

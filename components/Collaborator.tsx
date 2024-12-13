@@ -28,7 +28,6 @@ const Collaborator = ({roomId,creatorId,email,collaborator,user}: CollaboratorPr
     }   
     // debugger;
     // console.log("creatorId:", creatorId, "collaborator.id:", collaborator.id);
-
   return (
     <li className='flex items-center justify-between gap-2 py-3'>
         <div className='flex gap-2'>
@@ -51,7 +50,6 @@ const Collaborator = ({roomId,creatorId,email,collaborator,user}: CollaboratorPr
                 </p>
             </div>
         </div>
-
         {creatorId===collaborator.id ? (
             <p className='text-sm text-blue-100'>Owner</p>
         ): (
